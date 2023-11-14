@@ -1,0 +1,38 @@
+package org.example;
+
+import java.util.Scanner;
+
+public class WeightConverter {
+    private static Scanner inputScanner = new Scanner(System.in);
+
+    private static final double BARBELL_WEIGHT_LB = 45.0;
+    private static final double BARBELL_WEIGHT_KG = 20.4177;
+    private static final double LB_TO_KG = 0.453592;
+    private static final double KG_TO_LB = 2.20462;
+    public static void main(String[] args) {
+        System.out.println("Please enter the weight: ");
+        double weightEntered = Double.parseDouble(inputScanner.nextLine());
+
+        System.out.println("Is it in pounds(lb) or kilogram(kg): ");
+        String conversion = inputScanner.nextLine();
+        double totalWeight = 0.0;
+
+        System.out.println("Do you want the total weight to include the bar? Y/N");
+        String withOrWithoutBar = inputScanner.nextLine();
+
+        if(conversion.equalsIgnoreCase("lb") && withOrWithoutBar.equalsIgnoreCase("Y")){
+            totalWeight = (weightEntered * LB_TO_KG) + BARBELL_WEIGHT_KG ;
+        } else if (conversion.equalsIgnoreCase("lb") && withOrWithoutBar.equalsIgnoreCase("N")) {
+            totalWeight = (weightEntered * LB_TO_KG);
+        } else if (conversion.equalsIgnoreCase("kg") && withOrWithoutBar.equalsIgnoreCase("Y")){
+            totalWeight = (weightEntered * KG_TO_LB) + BARBELL_WEIGHT_LB;
+        } else if (conversion.equalsIgnoreCase("kg") && withOrWithoutBar.equalsIgnoreCase("N")) {
+            totalWeight = (weightEntered * KG_TO_LB);
+        }
+
+
+        System.out.println("Total Weight: " + totalWeight);
+
+        inputScanner.close();
+    }
+}
